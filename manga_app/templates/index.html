@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>漫画評価サイト</title>
+</head>
+<body>
+    <h1>漫画評価</h1>
+
+    <form method="POST">
+        <p>
+            タイトル：
+            <input type="text" name="title" required>
+        </p>
+
+        <p>
+    既読・未読    <select name="watched">
+        <option value="1">既読</option>
+        <option value="0">未読</option>
+    </select>
+        </p>
+
+
+        <p>
+            評価（★1〜5）：
+            <select name="rating">
+                <option value="1">★1</option>
+                <option value="2">★2</option>
+                <option value="3">★3</option>
+                <option value="4">★4</option>
+                <option value="5">★5</option>
+            </select>
+        </p>
+
+        <button type="submit">追加</button>
+    </form>
+
+    <hr>
+
+    <h2>登録済み漫画</h2>
+    <ul>
+        {% for manga in mangas %}
+            <li>
+                {{ manga[1] }} /
+                {% if manga[2] == 1 %}
+                    ★{{ manga[3] }}
+                {% else %}
+                    未視聴
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
